@@ -1,28 +1,33 @@
 import { NewObjPizza, NewObjSandwich, NewObjSoup } from './types';
 import { FormValues } from './yupSchema';
 
-export const createObject = (obj: FormValues) => {
-  let newObj;
+export const buildPayload = (obj: FormValues) => {
+  const baseData = {
+    dishName: obj.dishName,
+    preparationTime: obj.preparationTime,
+  };
+
   if (obj.dishType === 'pizza') {
-    return (newObj = {
-      dishName: obj.dishName,
-      preparationTime: obj.preparationTime,
+    return {
+      ...baseData,
       noOfSlices: obj.noOfSlices,
       diameter: obj.diameter,
-    } as NewObjPizza);
+    } as NewObjPizza;
   }
   if (obj.dishType === 'soup') {
-    return (newObj = {
+    return {
+      ...baseData,
       dishName: obj.dishName,
       preparationTime: obj.preparationTime,
       spicinessScale: obj.spicinessScale,
-    } as NewObjSoup);
+    } as NewObjSoup;
   }
   if (obj.dishType === 'sandwich') {
-    return (newObj = {
+    return {
+      ...baseData,
       dishName: obj.dishName,
       preparationTime: obj.preparationTime,
       slicesOfBread: obj.slicesOfBread,
-    } as NewObjSandwich);
+    } as NewObjSandwich;
   }
 };

@@ -1,5 +1,6 @@
 import { FormControl, FormHelperText, FormLabel, Input } from '@chakra-ui/react';
 import { FormikProps } from 'formik';
+import FormHelperTextCustom from './FormHelperTextCustom';
 
 export const SingleInputField = <T,>({
   accessor,
@@ -35,11 +36,7 @@ export const SingleInputField = <T,>({
         min={min}
         max={max}
       />
-      <FormHelperText sx={{ color: 'red' }}>
-        {formik.touched[accessor] && formik.errors[accessor]
-          ? (formik.errors[accessor] as string) || ''
-          : ''}
-      </FormHelperText>
+      <FormHelperTextCustom formik={formik} accessor={accessor} />
     </FormControl>
   );
 };

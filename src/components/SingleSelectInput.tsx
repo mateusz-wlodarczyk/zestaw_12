@@ -1,17 +1,18 @@
-import { FormControl, FormHelperText, FormLabel, Input, Select } from '@chakra-ui/react';
+import { FormControl, FormLabel, Select } from '@chakra-ui/react';
 import { FormikProps } from 'formik';
 import { DishType } from '../utils/types';
+import FormHelperTextCustom from './FormHelperTextCustom';
 
 export const SingleSelectInput = <T,>({
   accessor,
   formik,
   text,
-  arrayValue,
+  options,
 }: {
   accessor: keyof T & string;
   formik: FormikProps<T>;
   text: string;
-  arrayValue: DishType[];
+  options: DishType[];
 }) => {
   return (
     <FormControl>
@@ -21,7 +22,7 @@ export const SingleSelectInput = <T,>({
         value={formik.values[accessor] as string}
         name={accessor}
       >
-        {arrayValue.map((el) => {
+        {options.map((el) => {
           return (
             <option key={el.index} value={el.value}>
               {el.text}
@@ -29,11 +30,7 @@ export const SingleSelectInput = <T,>({
           );
         })}
       </Select>
-      <FormHelperText>
-        {formik.touched[accessor] && formik.errors[accessor]
-          ? (formik.errors[accessor] as string) || ''
-          : ''}
-      </FormHelperText>
+      <FormHelperTextCustom formik={formik} accessor={accessor} />
     </FormControl>
   );
 };

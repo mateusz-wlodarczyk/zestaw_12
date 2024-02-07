@@ -1,19 +1,17 @@
-export type NewObjPizza = {
+export type BaseDish = {
   dishName: string;
   preparationTime: string;
+};
+export type NewObjPizza = BaseDish & {
   noOfSlices: number;
   diameter: number;
 };
 
-export type NewObjSoup = {
-  dishName: string;
-  preparationTime: string;
+export type NewObjSoup = BaseDish & {
   spicinessScale: number;
 };
 
-export type NewObjSandwich = {
-  dishName: string;
-  preparationTime: string;
+export type NewObjSandwich = BaseDish & {
   slicesOfBread: number;
 };
 
